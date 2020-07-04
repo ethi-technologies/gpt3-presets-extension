@@ -1,0 +1,26 @@
+{
+  "short_name": "GPT-3 presets",
+  "name": "Browse GPT-3 presets.",
+  "version": "1.1",
+  "manifest_version": 2,
+  "browser_action": {},
+  "permissions": [
+    "tabs", 
+    //"*://*.beta.openai.com/*"
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_scripts" : [
+    {
+      "matches": [
+        //"*://*.beta.openai.com/*"
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [ "/static/js/content.js" ]
+    }
+  ],
+  "web_accessible_resources":[
+    "/static/media/*"
+  ]
+}
