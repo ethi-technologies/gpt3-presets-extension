@@ -5,7 +5,7 @@ default: &default
 
 development:
   <<: *default
-  database: gpt3_presents_development
+  database: gpt3_presets_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -13,8 +13,8 @@ development:
 test:
   <<: *default
   database: db/test.sqlite3
-  database: gpt3_presents_test
+  database: gpt3_presets_test
 
 production:
   <<: *default
-  database: gpt3_presents_production
+  database: gpt3_presets_production
