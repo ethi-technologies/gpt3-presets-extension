@@ -4,6 +4,9 @@
   "version": "1.1",
   "manifest_version": 2,
   "browser_action": {},
+  "background": {
+    "scripts": [ "app/background.js" ]
+  },
   "permissions": [
     "tabs", 
     //"*://*.beta.openai.com/*"

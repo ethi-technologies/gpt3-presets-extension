@@ -12,15 +12,15 @@ const DirectoryModal = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await presetService.fetchCategories();
+      presetService.fetchCategories((json) => {
+        if (json && json.categories) {
+          setCategories(json.categories);
 
-      if (res.categories) {
-        setCategories(res.categories);
-
-        if (!activeCategory) {
-          setActiveCategory(res.categories[0]);
+          if (!activeCategory) {
+            setActiveCategory(json.categories[0]);
+          }
         }
-      }
+      });
     };
 
     fetchData();
@@ -28,6 +28,10 @@ const DirectoryModal = (props) => {
 
   const handleCategoryClick = (e, category) => {
     setActiveCategory(category);
+  }
+
+  const handleClose = (e) => {
+    props.setVisibleModal('');
   }
 
   const categoriesHTML = categories ? categories.map((category, index) =>
@@ -47,9 +51,10 @@ const DirectoryModal = (props) => {
 
   return (
     <div
+      style={ { zIndex: 1000 } }
       className={[
         props.visibleModal === 'directory' ? "sm:block" : "sm:hidden",
-        "z-30 fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center",
+        "fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center",
       ].join(' ')}
     >
       <div className="fixed inset-0 transition-opacity">
@@ -64,8 +69,14 @@ const DirectoryModal = (props) => {
             <DirectoryPresets activeCategory={activeCategory} />
           </div>
         </div>
+
         <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-          ACTIONS
+
+          <span className="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+            <button type="button" onClick={e => handleClose(e)} className="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+              Close
+            </button>
+          </span>
         </div>
       </div>
     </div>

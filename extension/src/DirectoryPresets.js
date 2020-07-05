@@ -10,18 +10,18 @@ const DirectoryPresets = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       if (props.activeCategory) {
-        const res = await presetService.fetchPresets(props.activeCategory);
-
-        if (res.presets) {
-          setPresets(res.presets);
-        }
+        presetService.fetchPresets(props.activeCategory, (json) => {
+          if (json && json.presets) {
+            setPresets(json.presets);
+          }
+        });
       }
     }
 
     fetchData();
   }, [ props.activeCategory ]);
 
-  const presetsHTML = presets ? presets.map((preset) => (
+  const presetsHTML = (presets && presets.length > 0) ? presets.map((preset) => (
     <tr className="bg-white" key={preset.id}>
       <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
         {preset.author}
@@ -39,7 +39,13 @@ const DirectoryPresets = (props) => {
         <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit</a>
       </td>
     </tr>
-  )) : [];
+  )) : (
+    <tr className="bg-white" key="none">
+      <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900" colspan="4">
+        No presets found.
+      </td>
+    </tr>
+  );
 
   return (
     <>
