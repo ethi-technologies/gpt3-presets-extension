@@ -66,7 +66,7 @@ const DirectoryModal = (props) => {
           <div>{categoriesHTML}</div>
 
           <div className="flex-1">
-            <DirectoryPresets activeCategory={activeCategory} />
+            <DirectoryPresets activeCategory={activeCategory} setVisibleModal={props.setVisibleModal} />
           </div>
         </div>
 

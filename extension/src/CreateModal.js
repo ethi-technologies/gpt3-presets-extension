@@ -24,7 +24,9 @@ const CreateModal = (props) => {
   const onSubmit = async (data) => {
     const response = await presetService.create({
       preset: data,
-    })
+    });
+
+    props.setVisibleModal('');
   };
 
   const handleClose = (e) => {
