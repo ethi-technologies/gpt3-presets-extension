@@ -2,6 +2,10 @@
 
 Based on this repo: https://github.com/satendra02/react-chrome-extension. Original README below.
 
+### API Dev
+
+For working on the API, its necessary to reference scripts from `./src/preset.service.js` inside `./public/app/background.js` since chrome doesn't allow CORS inside the extension itself.
+
 ## React Chrome Extension
 
 We have open sourced the boilerplate of chrome extension with ReactJs using inject page strategy. Read [detailed blog](https://medium.com/@satendra02/create-chrome-extension-with-reactjs-using-inject-page-strategy-137650de1f39)
