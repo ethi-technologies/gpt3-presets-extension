@@ -1,6 +1,7 @@
-const apiURL = 'http://localhost:4000/api/v1';
+// const apiURL = 'http://localhost:4000/api/v1';
+const apiURL = 'https://prompts.ew.r.appspot.com/graphql';
 
-chrome.runtime.onMessage.addListener(
+chrome.runtime.onMessage.addListener( 
   function(request, sender, sendResponse) {
     if (request.contentScriptQuery == "queryCreatePreset") {
       create(request.preset)
@@ -32,20 +33,43 @@ function create(preset) {
 }
 
 function fetchCategories() {
+  // TODO: tags query doesn't exist on server yet
+  const getTags = {
+    query: {
+      tags: {
+        tag
+      }
+    }
+  }
   const requestOptions = {
-    method: 'GET',
+    method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+    body: JSON.stringify(getPrompts)
   };
-
-  return fetch(`${apiURL}/presets/categories`, requestOptions).then(handleServiceResponse);  
+  return fetch(`${apiURL}`, requestOptions).then(handleServiceResponse);  
 }
 
 function fetchPresets(category) {
+  const getPrompts = {
+    query: {
+      prompts: {
+        id,
+        name,
+        author,
+        description,
+        text,
+        tags,
+        likes
+      }
+    }
+  }
+
   const requestOptions = {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+    body: JSON.stringify(getPrompts)
   };
-  return fetch(`${apiURL}/presets?category=${category}`, requestOptions).then(handleServiceResponse);  
+  return fetch(`${apiURL}`, requestOptions).then(handleServiceResponse);  
 }
 
 function handleServiceResponse(response) {
