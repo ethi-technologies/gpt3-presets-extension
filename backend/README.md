@@ -1,24 +1,15 @@
-# README
+# ai-prompts-backend
+Apollo GraphQL, Typescript Node server layer on top of Google FireStore DB.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![image](https://user-images.githubusercontent.com/17267419/87878382-2ba23a80-c9e4-11ea-8f66-b01e14b60c6d.png)
 
-Things you may want to cover:
+If you setup your npm scripts you should be able to run
 
-* Ruby version
+To use Apollo Engine, remember to set the APOLLO\_KEY environment variable.
 
-* System dependencies
+```bash
+npm run serve
+```
 
-* Configuration
+If you navigate to the URL you shoud be able to see a GraphQL playground where you can query your API, congrats!
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

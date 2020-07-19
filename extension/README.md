@@ -6,12 +6,10 @@ Based on this repo: https://github.com/satendra02/react-chrome-extension. Origin
 
 We have open sourced the boilerplate of chrome extension with ReactJs using inject page strategy. Read [detailed blog](https://medium.com/@satendra02/create-chrome-extension-with-reactjs-using-inject-page-strategy-137650de1f39)
 
-
 The boilerplate is to quickly create a chrome extension using ReactJs, The motivation behind creating a boilerplate was:
+
 1. Instead of chrome's ready-made popup, We wanted our own page injected into DOM as a sidebar for better UX.
-
 2. We wanted to use ReactJs for the Component-based approach, Routing, and its build mechanism.
-
 3. We need to make sure that the extension CSS should not conflict with the host page styles in any case.
 
 

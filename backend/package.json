@@ -1,8 +1,23 @@
 {
-  "dependencies": {
-    "@rails/webpacker": "4.2.2"
-  },
-  "devDependencies": {
-    "webpack-dev-server": "^3.11.0"
-  }
+    "name": "functions",
+    "scripts": {
+        "build": "tsc",
+        "dev": "npm run build && node lib/index.js",
+        "start": "node lib/index.js",
+        "deploy": "npm run build && gcloud app deploy --project prompts"
+    },
+    "main": "lib/index.js",
+    "dependencies": {
+        "apollo-server": "^2.0.0-rc.8",
+        "apollo-server-express": "^2.16.0",
+        "express": "^4.17.1",
+        "firebase-admin": "^9.0.0",
+        "graphql": "^15.3.0"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.7",
+        "@types/graphql": "^14.5.0",
+        "tslint": "^6.1.2",
+        "typescript": "^3.9.7"
+    }
 }
